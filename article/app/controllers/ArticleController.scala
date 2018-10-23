@@ -15,7 +15,7 @@ import services.CAPILookup
 import implicits.{AmpFormat, EmailFormat, HtmlFormat, JsonFormat}
 import model.Cached.{RevalidatableResult, WithoutRevalidationResult}
 import model.dotcomponents.DotcomponentsDataModel
-import services.dotcomponents.{LocalRender, RemoteRender, RenderType, RenderingTierPicker}
+import services.dotcomponents._
 
 import scala.concurrent.Future
 
@@ -41,8 +41,9 @@ class ArticleController(contentApiClient: ContentApiClient, val controllerCompon
   def renderArticle(path: String): Action[AnyContent] = {
     Action.async { implicit request =>
       mapModel(path, ArticleBlocks)( article => {
-        RenderingTierPicker.getRenderTierFor(article) match {
-          case RemoteRender => remoteRender.render(ws, path, article)
+        RenderingTierPicker.getTier(article) match {
+          case RemoteRender => remoteRender.getArticle(ws, path, article)
+          case RemoteRenderAMP => remoteRender.getAMPArticle(ws, path, article)
           case LocalRender => render(path, article)
           case _ => render(path, article)
         }
