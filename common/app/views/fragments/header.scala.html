@@ -38,7 +38,7 @@
 
             <div class="new-header__cta-bar hide-until-mobile">
                 @defining(Edition(request).id.toLowerCase()) { editionId =>
-                    @if(!page.metadata.hasSlimHeader) {
+                    <!-- @if(!page.metadata.hasSlimHeader) { -->
                         <div class="cta-bar__message">
                             @if(editionId == "us") {
                                 Make a contribution
@@ -62,7 +62,7 @@
                             Subscribe
                             @fragments.inlineSvg("arrow-right", "icon")
                         </a>
-                    }
+                    <!-- } -->
                 }
             </div>
 
