@@ -8,7 +8,7 @@
 @import navigation.UrlHelpers.{getReaderRevenueUrl, Footer}
 @import common.editions.{Au, Uk, Us, International}
 @import model.Page
-@import conf.switches.Switches.{ EmailInlineInFooterSwitch }
+@import conf.switches.Switches.{ EmailInlineInFooterSwitch, NewNavEnabled  }
 @import com.gu.identity.model.EmailNewsletters
 @import model.NoCache
 
@@ -28,7 +28,11 @@
                     <div class="footer__back-to-top">
                         <span class="back-to-top__text">Back to top</span>
                         <span class="back-to-top__icon-container">
-                            @fragments.inlineSvg("arrow-up", "icon")
+                                @if(NewNavEnabled.isSwitchedOn) {
+                                    @fragments.inlineSvg("arrow-up", "icon")
+                                } else {
+                                    <i class="back-to-top__icon"></i>
+                                }
                         </span>
                     </div>
                 </div>
