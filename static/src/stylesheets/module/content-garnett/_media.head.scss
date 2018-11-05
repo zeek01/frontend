@@ -52,3 +52,19 @@
         background: $brightness-20;
     }
 }
+
+.content--media.content--pillar-news {
+
+    .content__series-label.content__label {
+        span.label__link-wrapper {
+            color: $brightness-100;
+        }
+    }
+
+    .content__section-label.content__label {
+        span.label__link-wrapper {
+            color: $brightness-100;
+        }
+    }
+
+}
